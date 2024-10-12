@@ -2,14 +2,24 @@
 
 using namespace std;
 
-const int pizzaPrices[7] = { 450, 420, 450, 400, 500, 310, 550 }; const char* pizzaNames[7] = { "Маргарита", "Двойной Сыр", "Пепперони", "Гавайская", "Мясная", "Вегетарианская", "Сырная" };
+const int pizzaPrices[7] = { 450, 420, 450, 400, 500, 310, 550 };
+const char* pizzaNames[7] = { "Маргарита", "Двойной Сыр", "Пепперони", "Гавайская", "Мясная", "Вегетарианская", "Сырная" };
 
-const int snackPrices[4] = { 100, 150, 200, 250 }; const char* snackNames[4] = { "Картофель фри", "Куриные крылышки", "Салат Цезарь", "Луковые кольца" };
+const int snackPrices[4] = { 100, 150, 200, 250 };
+const char* snackNames[4] = { "Картофель фри", "Куриные крылышки", "Салат Цезарь", "Луковые кольца" };
 
-const int drinkPrices[5] = { 80, 100, 120, 150, 180 }; const char* drinkNames[5] = { "Злая Пепси", "Чай О Лонг", "Имба", "Чай", "Кофе" };
+const int drinkPrices[5] = { 80, 100, 120, 150, 180 };
+const char* drinkNames[5] = { "Злая Пепси", "Чай О Лонг", "Имба", "Чай", "Кофе" };
 
 int main() {
-    setlocale(LC_ALL, "ru"); int pizzaCount = 0; int snackCount = 0; int drinkCount = 0; int totalPizzas = 0; int totalSnacks = 0; int totalDrinks = 0; double totalSum = 0;
+    setlocale(LC_ALL, "ru");
+    int pizzaCount = 0;
+    int snackCount = 0;
+    int drinkCount = 0;
+    int totalPizzas = 0;
+    int totalSnacks = 0;
+    int totalDrinks = 0;
+    double totalSum = 0;
 
     char repeat;
 
@@ -72,12 +82,10 @@ int main() {
 
         totalSum = totalPizzas + totalSnacks + totalDrinks;
 
-        // Каждая 5 пицца в подарок
         if (pizzaCount >= 5) {
             totalSum -= pizzaPrices[pizzaCount / 5];
         }
 
-        // Если напитков ценой от 500 рублей в заказе больше чем 4, то одна в подарок
         int expensiveDrinksCount = 0;
         for (int i = 0; i < drinkCount; i++) {
             if (drinkPrices[i] >= 500) {
@@ -88,7 +96,6 @@ int main() {
             totalSum -= drinkPrices[expensiveDrinksCount - 1];
         }
 
-        // Если сумма заказа превышает 2000 рублей, то скидка 15% на весь заказ
         if (totalSum > 2000) {
             totalSum -= (totalSum * 0.15);
         }
